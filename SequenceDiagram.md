@@ -4,7 +4,7 @@ sequenceDiagram
     participant server
 
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
-    server-->>browser: 302 Found
+    server-->>browser: 302 Found must use GET request
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
     server-->>browser: HTML document

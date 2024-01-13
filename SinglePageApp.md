@@ -16,7 +16,7 @@ sequenceDiagram
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
     Note right of browser : Displaying the full screen using JSON extension
-    server-->>browser: the last note : content: "", date: "2024-01-13T22:13:10.821Z"
+    server-->>browser: JSON file the last note : content: "", date: "2024-01-13T22:13:10.821Z"
 
 
 ```

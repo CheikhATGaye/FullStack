@@ -22,4 +22,5 @@ sequenceDiagram
     server-->>browser: JSON file content: "Java Script is a very cool language",date: "2024-01-13T22:36:04.430Z"
     Note right of browser : displaying the new note
     browser-->>user: display : .Java Script is a very cool language
+    
 ```

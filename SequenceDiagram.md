@@ -19,6 +19,6 @@ sequenceDiagram
     server-->>browser: the JavaScript file
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
-    server-->>browser: [content: "hi" date: "2024-01-12T23:06:31.543Z", ... ]
+    server-->>browser: JSON file [content: "hi" date: "2024-01-12T23:06:31.543Z", ... ]
     browser-->>user: display : .hi
 ```

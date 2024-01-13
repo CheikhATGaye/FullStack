@@ -1,4 +1,4 @@
-'''mermaid
+```mermaid
 sequenceDiagram
     participant browser
     participant server
@@ -17,4 +17,4 @@ sequenceDiagram
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
     server-->>browser: [content: "hi" date: "2024-01-12T23:06:31.543Z", ... ]
-'''
+```

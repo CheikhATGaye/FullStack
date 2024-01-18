@@ -24,7 +24,14 @@ const Total = (props) => {
   )
 }
 
+import { useState } from 'react'
+
 const App = () => {
+  const [ counter, setCounter ] = useState(0)
+
+  const increaseByOne = () => setCounter(counter + 1)
+  
+  const setToZero = () => setCounter(0)
   const course = {
     name: 'Half Stack application development',
     parts: [
@@ -44,13 +51,24 @@ const App = () => {
   }
 
   return (
-    <div>
-      <Header course = {course.name}/>
-      <Content name = {course.parts[0].name} number = {course.parts[0].exercises}/>
-      <Content name = {course.parts[1].name} number = {course.parts[1].exercises}/>
-      <Content name = {course.parts[2].name} number = {course.parts[2].exercises}/>
-      <Total sum = {course.parts[0].exercises+course.parts[1].exercises+course.parts[2].exercises}/>
-    </div>
+  <div>
+   <div>
+   <div>{counter}</div>
+   <button onClick={increaseByOne}>
+    plus
+   </button>
+   <button onClick={setToZero}> 
+    zero
+   </button>
+  </div>
+   <div>
+    <Header course = {course.name}/>
+    <Content name = {course.parts[0].name} number = {course.parts[0].exercises}/>
+    <Content name = {course.parts[1].name} number = {course.parts[1].exercises}/>
+    <Content name = {course.parts[2].name} number = {course.parts[2].exercises}/>
+    <Total sum = {course.parts[0].exercises+course.parts[1].exercises+course.parts[2].exercises}/>
+   </div>
+  </div>
   )
 }
 export default App

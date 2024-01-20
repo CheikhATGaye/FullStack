@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const Header = (props) => {
   console.log(props)
   return(
@@ -31,7 +33,7 @@ const Button = ({onClick, text}) => {
   )
 }
 
-import { useState } from 'react'
+
 
 const App = () => {
 

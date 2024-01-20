@@ -1,10 +1,11 @@
 import { useState } from 'react'
 
 const Text = (props) =>{
-  return(
-  <div>
-    <h1>{props.name}</h1>
-  </div>)
+  return (
+    <div>
+      <h1>{props.name}</h1>
+    </div>
+  )
 }
 const App = () => {
 

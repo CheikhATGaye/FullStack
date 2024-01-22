@@ -33,6 +33,8 @@ const Button = ({onClick, text}) => {
   )
 }
 
+// Adding button event for practicing
+
 
 
 const App = () => {

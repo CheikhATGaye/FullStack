@@ -1,10 +1,34 @@
 import { useState } from 'react'
 
-const Display = (props) => {
+const Button = (props) => {
   return (
-    <button onClick={props.onClick}>{props.text}</button>
-    )
+    <div>
+    <button onClick={props.handleVotes}>{props.Vote}</button>
+    <button onClick={props.anecdote}>{props.text}</button>
+    </div>)
 }
+const Display = (props) =>{
+  return(
+    <h1>{props.text}</h1>
+  )
+}
+let Vote = new Array(8).fill(0)
+
+const MostVotedAnecdotes = (props) => {
+  console.log(props)
+  {props.anecdote}
+  {props.array}
+  {props.max}
+  {props.array.indexOf(props.max)}
+  return(
+    <div>
+      {props.anecdote[props.array.indexOf(props.max)]}
+      <p>has {props.max}</p>
+    </div>
+  )
+}
+
+
 
 const App = () => {
   const anecdotes = [
@@ -17,21 +41,39 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
   ]
-   
   const [selected, setSelected] = useState(0)
-  const handleClick = () => {
-    console.log(selected)
-    setSelected(Math.floor(Math.random()*8)) //Math floor to have integer, Math random random number btw 0 and 1 and *8=> 0 to 8  
+  
+  const anecdoteClick = () => {
+      setSelected(Math.floor(Math.random()*8))  
+      console.log('previous anecdote is ', selected)
+    }
+  
+  
+  const voteClick = () => {
+      Vote[selected]+=1
+      console.log('Array of votes')
+      console.log(Vote)
+      
   }
 
+  let copy = [...Vote]
+
+
+  
 
   return (
     <div>
     <div>
-     {anecdotes[selected]}
+      <Display text = {'Anecdote of the day'}/>
+      {anecdotes[selected]} 
+      <p>has {copy[selected]} votes</p>
     </div>
-     <div>
-     <Display onClick={handleClick} text = 'next anecdote'/>
+    <div>
+      <Button handleVotes={voteClick} Vote={'vote'} anecdote={anecdoteClick} text = 'next anecdote'/>
+    </div>
+    <div>
+      <Display text = {'Anecdote with most votes'}/>
+      <MostVotedAnecdotes anecdote={anecdotes} array={copy} max = {Math.max(copy)} />
     </div>
     </div>
   )

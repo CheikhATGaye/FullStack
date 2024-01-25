@@ -1,5 +1,5 @@
-import Course1 from './component/Course1'
-import Course2 from './component/Course2'
+import Course1 from './components/Course1'
+import Course2 from './components/Course2'
 
 const App = () => {
   const courses = [

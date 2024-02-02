@@ -1,12 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Display from './components/Display'
+import axios from 'axios'
 
-const App = (props) => {
-  const [persons, setPersons] = useState(props.phonebook)
+const App = () => {
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newId, setNewId] = useState(4)
   const [search, setSearch] = useState('')
+
+  
+  useEffect(() => {
+    console.log('effect')
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        console.log('promise fulfilled')
+        setPersons(response.data)
+      })
+  }, [])
  
   const addName = (event) => {
     event.preventDefault()

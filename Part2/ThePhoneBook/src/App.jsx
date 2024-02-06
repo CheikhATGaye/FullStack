@@ -1,43 +1,44 @@
 import { useState, useEffect } from 'react'
 import Display from './components/Display'
-import axios from 'axios'
+import personServices from './services/persons'
 
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
-  const [newId, setNewId] = useState(4)
   const [search, setSearch] = useState('')
 
   
   useEffect(() => {
     console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        console.log('promise fulfilled')
-        setPersons(response.data)
-      })
+    personServices
+      .getAll()
+      .then(initialPerson => {
+        setPersons(initialPerson)}
+      ) 
   }, [])
  
   const addName = (event) => {
     event.preventDefault()
     const nameObject = {
       name: newName,
-      number: newNumber,
-      id: newId+1 }
-    setPersons(persons.concat(nameObject))
-    setNewName('')
-    setNewNumber('')
-    setNewId(newId+1)
-    }    
+      number: newNumber
+     }
+    personServices
+     .create(nameObject)
+     .then(returnedName=>{
+      setPersons(persons.concat(returnedName))
+      setNewName('')
+      setNewNumber('')
+     }
+      )    
+    }  
+      
   const handleNameChange = (event) => {
     console.log(event.target.value)
     setNewName(event.target.value)
-    if (newName===persons)
-      alert(`${newName} is already added to phonebook`)
+  }  
     
-  }
   const handleNumberChange = (event) => {
     console.log(event.target.value)
     setNewNumber(event.target.value)
@@ -45,7 +46,14 @@ const App = () => {
   const handleSearch =(event) => {
     console.log(event.target.value)
     setSearch(event.target.value)
+
   }  
+  const handleRemoving = (id) => {
+    personServices
+      .remove(id, persons.id)
+      }
+      
+  
     
 
   return (
@@ -71,7 +79,7 @@ const App = () => {
       <div>
       {persons.map((props) =>
          <div key={props.id}> 
-         <Display name={props.name} number={props.number}/>
+         <Display  Delete={handleRemoving} name={props.name} number={props.number}/>
          </div>
          )
       }

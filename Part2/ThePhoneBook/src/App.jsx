@@ -50,7 +50,8 @@ const App = () => {
   }  
   const handleRemoving = (id) => {
     personServices
-      .remove(id, persons.id)
+      .remove(id, persons)
+      .catch(alert(`error`))
       }
       
   
@@ -59,6 +60,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <p className='message'>Added</p>
       <div>
         filter shown with: 
         <input value = {search} onChange={handleSearch}/>  
